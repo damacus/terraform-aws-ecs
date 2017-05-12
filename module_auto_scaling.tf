@@ -1,12 +1,3 @@
-module "vpc" {
-  source      = "git@github.com:damacus/terraform-module-vpc.git?ref=v1.0.6"
-  cost_code   = "${var.cost_code}"
-  environment = "${var.environment}"
-  owner       = "${var.owner}"
-  email       = "${var.email}"
-  nat_count   = 3
-}
-
 module "ecs-autoscaling-group" {
   source           = "git@github.com:damacus/terraform-module-asg.git"
   name             = "ecs-asg"
