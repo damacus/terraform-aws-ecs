@@ -4,6 +4,7 @@ variable "environment" {}
 variable "project" {}
 variable "application" {}
 variable "cost_code" {}
+variable "email" {}
 variable "region" {}
 
 variable "name" {
@@ -19,7 +20,9 @@ variable "target_port" {}
 variable "desired_count" {}
 variable "health_check_target" {}
 variable "service-name" {}
-variable "allowed_ips" {}
+variable "allowed_ips" {
+  type = list
+}
 
 variable "asg_desired_capacity" {
   default = "3"
