@@ -5,7 +5,7 @@ resource "aws_ecs_cluster" "metadata" {
 resource "aws_ecs_service" "metadata" {
   name            = "${var.service-name}"
   cluster         = "${aws_ecs_cluster.metadata.id}"
-  task_definition = "${aws_ecs_task_definition.metadata.arn}"
+  task_definition = "${var.task_definition_arn}"
   desired_count   = "${var.desired_count}"
   iam_role        = "${aws_iam_role.ecs.arn}"
   depends_on      = ["aws_iam_role_policy.ecs"]

@@ -5,7 +5,7 @@ module "ecs-autoscaling-group" {
   subnets          = "${module.vpc.private_subnets}"
   security_groups  = ["${aws_security_group.ecs_cluster.id}"]
   ami              = "${data.aws_ami.ecs-optimized.id}"
-  key_name         = "${aws_key_pair.ecs.key_name}"
+  key_name         = "${var.key_name}"
   instance_profile = "${aws_iam_instance_profile.ecs.id}"
   map_public_ip    = false
 

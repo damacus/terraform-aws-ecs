@@ -1,4 +1,3 @@
-variable "cost_code" {}
 variable "owner" {}
 variable "environment" {}
 variable "project" {}
@@ -20,6 +19,8 @@ variable "target_port" {}
 variable "desired_count" {}
 variable "health_check_target" {}
 variable "service-name" {}
+variable "key_name" {}
+variable "task_definition_arn" {}
 variable "allowed_ips" {
   type = "list"
 }
