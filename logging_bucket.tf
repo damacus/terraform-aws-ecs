@@ -37,7 +37,7 @@ resource "aws_s3_bucket" "elb_logs" {
         "s3:PutObject"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::logging-elb-logs-${var.environment}/AWSLogs/*",
+      "Resource": "arn:aws:s3:::logging-elb-logs-${var.environment}-${var.name}/AWSLogs/*",
       "Principal": {
         "AWS": [
           "${data.aws_elb_service_account.main.arn}"
