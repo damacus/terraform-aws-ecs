@@ -21,6 +21,7 @@ variable "health_check_target" {}
 variable "service-name" {}
 variable "key_name" {}
 variable "task_definition_arn" {}
+
 variable "allowed_ips" {
   type = "list"
 }

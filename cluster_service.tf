@@ -23,7 +23,8 @@ resource "aws_ecs_service" "ecs" {
   load_balancer {
     elb_name       = "${aws_elb.ecs.name}"
     container_name = "${var.target_container}"
-    container_port = "${var.target_port}"
+    # container_port = "${var.target_port}"
+    target_group_arn = "${aws_alb_target_group.ecs.arn}"
   }
 
   placement_constraints {
