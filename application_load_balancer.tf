@@ -29,6 +29,7 @@ resource "aws_alb_listener" "ecs" {
   load_balancer_arn = "${aws_alb.ecs.arn}"
   port              = "80"
   protocol          = "HTTP"
+
   # ssl_policy        = "ELBSecurityPolicy-2015-05"
   # certificate_arn   = "arn:aws:iam::187416307283:server-certificate/test_cert_rab3wuqwgja25ct3n4jdj2tzu4"
 
