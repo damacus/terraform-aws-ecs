@@ -6,10 +6,10 @@ resource "aws_alb" "ecs" {
 
   enable_deletion_protection = false
 
-  access_logs {
-    bucket = "${aws_s3_bucket.elb_logs.id}"
-    prefix = "alb-logs"
-  }
+  # access_logs {
+  #   bucket = "${aws_s3_bucket.elb_logs.id}"
+  #   prefix = "alb-logs"
+  # }
 
   tags {
     Name        = "${var.environment}-${var.application}-${var.name}-alb"
