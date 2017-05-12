@@ -20,7 +20,7 @@ module "ecs-autoscaling-group" {
   asg_desired_capacity      = "3"
   load_balancers            = ""
 
-  user_data_script = "#!/bin/bash\necho ECS_CLUSTER=${aws_ecs_cluster.metadata.name} >> /etc/ecs/ecs.config"
+  user_data_script = "#!/bin/bash\necho ECS_CLUSTER=${aws_ecs_cluster.ecs.name} >> /etc/ecs/ecs.config"
   zones            = ["${data.aws_availability_zones.available.names}"]
 
   # Tags
