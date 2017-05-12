@@ -1,10 +1,10 @@
-resource "aws_ecs_cluster" "metadata" {
+resource "aws_ecs_cluster" "ecs" {
   name = "${var.service-name}"
 }
 
-resource "aws_ecs_service" "metadata" {
+resource "aws_ecs_service" "ecs" {
   name            = "${var.service-name}"
-  cluster         = "${aws_ecs_cluster.metadata.id}"
+  cluster         = "${aws_ecs_cluster.ecs.id}"
   task_definition = "${var.task_definition_arn}"
   desired_count   = "${var.desired_count}"
   iam_role        = "${aws_iam_role.ecs.arn}"
