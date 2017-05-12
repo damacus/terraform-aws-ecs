@@ -21,7 +21,7 @@ variable "desired_count" {}
 variable "health_check_target" {}
 variable "service-name" {}
 variable "allowed_ips" {
-  type = list
+  type = "list"
 }
 
 variable "asg_desired_capacity" {
