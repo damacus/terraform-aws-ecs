@@ -2,7 +2,7 @@ resource "aws_alb" "ecs" {
   internal        = false
   name            = "${var.project}-${var.environment}-alb"
   subnets         = ["${module.vpc.public_subnets}"]
-  security_groups = ["${aws_security_group.elb.id}"]
+  security_groups = ["${aws_security_group.load_balancer.id}"]
 
   enable_deletion_protection = false
 
@@ -20,24 +20,24 @@ resource "aws_alb" "ecs" {
 
 resource "aws_alb_target_group" "ecs" {
   name     = "${var.project}-${var.environment}-alb-tg"
-  port     = 8100
-  protocol = "HTTP"
+  port     = "${var.target_port}"
+  protocol = "${var.target_protocol}"
   vpc_id   = "${module.vpc.vpc_id}"
 
   health_check {
     healthy_threshold = 5
     unhealthy_threshold = 2
     timeout = 5
-    path = "/repository/image/metadata/v1/health"
-    port = "8100"
+    path = "${var.health_check_target}"
+    port = "${var.health_check_port}"
     interval = 30
   }
 }
 
 resource "aws_alb_listener" "ecs" {
   load_balancer_arn = "${aws_alb.ecs.arn}"
-  port              = "80"
-  protocol          = "HTTP"
+  port              = "${var.listener_port}"
+  protocol          = "${var.listener_protocol}"
 
   # ssl_policy        = "ELBSecurityPolicy-2015-05"
   # certificate_arn   = "arn:aws:iam::187416307283:server-certificate/test_cert_rab3wuqwgja25ct3n4jdj2tzu4"

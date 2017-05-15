@@ -15,9 +15,7 @@ variable "instance_type" {
 }
 
 variable "target_container" {}
-variable "target_port" {}
 variable "desired_count" {}
-variable "health_check_target" {}
 variable "service-name" {}
 variable "key_name" {}
 variable "task_definition_arn" {}
@@ -60,4 +58,28 @@ variable "asg_max_size_down" {
 
 variable "asg_desired_capacity_down" {
   default = "0"
+}
+
+variable "listener_port" {
+  default = "80"
+}
+
+variable "listener_protocol" {
+  default = "HTTP"
+}
+
+variable "health_check_port" {
+  default = "80"
+}
+
+variable "health_check_target" {
+  default = "/"
+}
+
+variable "target_port" {
+  default = "80"
+}
+
+variable "target_protocol" {
+  default = "HTTP"
 }
