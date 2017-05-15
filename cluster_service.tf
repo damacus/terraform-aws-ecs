@@ -11,8 +11,8 @@ resource "aws_ecs_service" "ecs" {
 
   depends_on = [
     "aws_iam_role_policy.ecs",
-    "aws_alb.ecs",
   ]
+  # "aws_alb.ecs",
 
   placement_strategy {
     type  = "spread"

@@ -20,9 +20,18 @@ resource "aws_alb" "ecs" {
 
 resource "aws_alb_target_group" "ecs" {
   name     = "${var.project}-${var.environment}-alb-tg"
-  port     = 80
+  port     = 8100
   protocol = "HTTP"
   vpc_id   = "${module.vpc.vpc_id}"
+
+  health_check {
+    healthy_threshold = 5
+    unhealthy_threshold = 2
+    timeout = 5
+    path = "/repository/image/metadata/v1/health"
+    port = "8100"
+    interval = 30
+  }
 }
 
 resource "aws_alb_listener" "ecs" {
