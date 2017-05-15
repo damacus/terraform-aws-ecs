@@ -1,4 +1,5 @@
-# Passed into AutoScaling Groop
+# AutoScaling Group
+# These are passed into the ASG Module
 resource "aws_security_group" "ecs_cluster" {
   name        = "${var.environment}_${var.name}_sg"
   description = "ECS Security group"
@@ -38,7 +39,7 @@ resource "aws_security_group_rule" "instance_out_load_balancer" {
   security_group_id        = "${aws_security_group.ecs_cluster.id}"
 }
 
-# ALB Security Groups
+# Load Balancer
 resource "aws_security_group" "load_balancer" {
   name        = "load_balancer-${var.environment}_${var.name}_sg"
   description = "Load Balancer Security group"
@@ -50,6 +51,7 @@ resource "aws_security_group" "load_balancer" {
     Application = "${var.application}"
   }
 }
+
 resource "aws_security_group_rule" "pa_in_80" {
   type              = "ingress"
   protocol          = "TCP"

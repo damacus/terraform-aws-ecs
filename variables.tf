@@ -15,7 +15,7 @@ variable "instance_type" {
 }
 
 variable "target_container" {}
-variable "desired_count" {}
+variable "desired_tasks" {}
 variable "service-name" {}
 variable "key_name" {}
 variable "task_definition_arn" {}
@@ -82,4 +82,8 @@ variable "target_port" {
 
 variable "target_protocol" {
   default = "HTTP"
+}
+
+variable "internal_load_balancer" {
+  default = false
 }

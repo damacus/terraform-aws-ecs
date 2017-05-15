@@ -1,5 +1,5 @@
-resource "aws_s3_bucket" "elb_logs" {
-  bucket = "logging-elb-logs-${var.environment}-${var.name}"
+resource "aws_s3_bucket" "lb_logs" {
+  bucket = "load-balancer-logs-${var.environment}-${var.name}"
   acl    = "bucket-owner-full-control"
   region = "${var.region}"
 
@@ -37,7 +37,7 @@ resource "aws_s3_bucket" "elb_logs" {
         "s3:PutObject"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::logging-elb-logs-${var.environment}-${var.name}/AWSLogs/*",
+      "Resource": "arn:aws:s3:::load-balancer-logs-${var.environment}-${var.name}/AWSLogs/*",
       "Principal": {
         "AWS": [
           "${data.aws_elb_service_account.main.arn}"
