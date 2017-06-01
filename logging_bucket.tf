@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "lb_logs" {
   bucket = "load-balancer-logs-${var.environment}-${var.name}"
-  acl    = "bucket-owner-full-control"
+  acl    = "log-delivery-write"
   region = "${var.region}"
 
   versioning {
