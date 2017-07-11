@@ -1,5 +1,4 @@
 variable "owner" {}
-variable "environment" {}
 variable "project" {}
 variable "application" {}
 variable "cost_code" {}
