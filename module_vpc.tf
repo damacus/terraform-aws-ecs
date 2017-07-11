@@ -4,5 +4,4 @@ module "vpc" {
   environment = "${terraform.env}"
   owner       = "${var.owner}"
   email       = "${var.email}"
-  nat_count   = 3
 }
