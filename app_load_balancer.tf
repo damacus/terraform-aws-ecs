@@ -1,6 +1,6 @@
 resource "aws_alb" "ecs" {
   internal        = "${var.internal_load_balancer}"
-  name            = "${var.project}-${var.environment}-alb"
+  name            = "${var.project}-${terraform.env}-alb"
   subnets         = ["${module.vpc.public_subnets}"]
   security_groups = ["${aws_security_group.load_balancer.id}"]
 
@@ -11,14 +11,14 @@ resource "aws_alb" "ecs" {
   }
 
   tags {
-    Name        = "${var.environment}-${var.application}-${var.name}-alb"
-    Environment = "${var.environment}"
+    Name        = "${terraform.env}-${var.application}-${var.name}-alb"
+    Environment = "${terraform.env}"
     Application = "${var.application}"
   }
 }
 
 resource "aws_alb_target_group" "ecs" {
-  name     = "${var.project}-${var.environment}-alb-tg"
+  name     = "${var.project}-${terraform.env}-alb-tg"
   port     = "${var.target_port}"
   protocol = "${var.target_protocol}"
   vpc_id   = "${module.vpc.vpc_id}"

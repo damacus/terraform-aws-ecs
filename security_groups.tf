@@ -1,13 +1,13 @@
 # AutoScaling Group
 # These are passed into the ASG Module
 resource "aws_security_group" "ecs_cluster" {
-  name        = "${var.environment}_${var.name}_sg"
+  name        = "${terraform.env}_${var.name}_sg"
   description = "ECS Security group"
   vpc_id      = "${module.vpc.vpc_id}"
 
   tags {
-    Name        = "${var.environment}-${var.application}-${var.name}"
-    Environment = "${var.environment}"
+    Name        = "${terraform.env}-${var.application}-${var.name}"
+    Environment = "${terraform.env}"
     Application = "${var.application}"
   }
 }
@@ -41,13 +41,13 @@ resource "aws_security_group_rule" "instance_out_load_balancer" {
 
 # Load Balancer
 resource "aws_security_group" "load_balancer" {
-  name        = "load_balancer-${var.environment}_${var.name}_sg"
+  name        = "load_balancer-${terraform.env}_${var.name}_sg"
   description = "Load Balancer Security group"
   vpc_id      = "${module.vpc.vpc_id}"
 
   tags {
-    Name        = "${var.environment}-${var.application}-${var.name}"
-    Environment = "${var.environment}"
+    Name        = "${terraform.env}-${var.application}-${var.name}"
+    Environment = "${terraform.env}"
     Application = "${var.application}"
   }
 }

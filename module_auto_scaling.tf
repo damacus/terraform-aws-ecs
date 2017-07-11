@@ -28,5 +28,5 @@ module "ecs-autoscaling-group" {
   application = "${var.service-name}"
   description = "ecs-cluster for ${var.service-name}"
   owner       = "${var.owner}"
-  environment = "${var.environment}"
+  environment = "${terraform.env}"
 }

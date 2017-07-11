@@ -1,7 +1,6 @@
 resource "aws_s3_bucket" "lb_logs" {
-  bucket = "load-balancer-logs-${var.environment}-${var.name}"
+  bucket = "load-balancer-logs-${terraform.env}-${var.name}"
   acl    = "log-delivery-write"
-  region = "${var.region}"
 
   versioning {
     enabled = false
@@ -37,7 +36,7 @@ resource "aws_s3_bucket" "lb_logs" {
         "s3:PutObject"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::load-balancer-logs-${var.environment}-${var.name}/AWSLogs/*",
+      "Resource": "arn:aws:s3:::load-balancer-logs-${terraform.env}-${var.name}/AWSLogs/*",
       "Principal": {
         "AWS": [
           "${data.aws_elb_service_account.main.arn}"
@@ -49,8 +48,8 @@ resource "aws_s3_bucket" "lb_logs" {
 POLICY
 
   tags {
-    Name        = "${var.environment}-${var.application}-${var.name}"
-    Environment = "${var.environment}"
+    Name        = "${terraform.env}-${var.application}-${var.name}"
+    Environment = "${terraform.env}"
     Application = "${var.application}"
     cost_code   = "${var.cost_code}"
   }
