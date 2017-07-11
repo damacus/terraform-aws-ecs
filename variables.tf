@@ -3,7 +3,6 @@ variable "project" {}
 variable "application" {}
 variable "cost_code" {}
 variable "email" {}
-variable "region" {}
 
 variable "name" {
   default = "ecs"
