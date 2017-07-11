@@ -85,3 +85,6 @@ variable "target_protocol" {
 variable "internal_load_balancer" {
   default = false
 }
+
+variable "vpc_network" {}
+variable "availability_zone" {}
