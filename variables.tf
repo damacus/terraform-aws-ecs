@@ -3,10 +3,7 @@ variable "project" {}
 variable "application" {}
 variable "cost_code" {}
 variable "email" {}
-
-variable "name" {
-  default = "ecs"
-}
+variable "name" {}
 
 variable "instance_type" {
   default = "t2.medium"
@@ -58,17 +55,9 @@ variable "asg_desired_capacity_down" {
   default = "0"
 }
 
-variable "listener_port" {
-  default = "80"
-}
-
-variable "listener_protocol" {
-  default = "HTTP"
-}
-
-variable "health_check_port" {
-  default = "80"
-}
+variable "listener_port" {}
+variable "listener_protocol" {}
+variable "health_check_port" {}
 
 variable "health_check_target" {
   default = "/"
@@ -83,7 +72,7 @@ variable "target_protocol" {
 }
 
 variable "internal_load_balancer" {
-  default = false
+  default = true
 }
 
 variable "vpc_network" {}
