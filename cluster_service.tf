@@ -32,6 +32,6 @@ resource "aws_ecs_service" "ecs" {
 
   placement_constraints {
     type       = "memberOf"
-    expression = "attribute:ecs.availability-zone in [eu-west-1a, eu-west-1b, eu-west-1c]"
+    expression = "attribute:ecs.availability-zone in [${var.region}a, ${var.region}b, ${var.region}c]"
   }
 }

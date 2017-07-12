@@ -6,6 +6,8 @@ resource "aws_s3_bucket" "lb_logs" {
     enabled = false
   }
 
+  force_destroy = "${terraform.env == "production" ? false : true }"
+
   lifecycle_rule {
     id      = "log"
     prefix  = "log/"

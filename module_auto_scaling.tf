@@ -9,16 +9,22 @@ module "ecs-autoscaling-group" {
   instance_profile = "${aws_iam_instance_profile.ecs.id}"
   map_public_ip    = false
 
-  asg_max_size              = "5"
-  asg_min_size              = "3"
-  asg_min_size_up           = "3"
-  asg_min_size_down         = "0"
-  asg_max_size_up           = "5"
-  asg_max_size_down         = "0"
-  asg_desired_capacity_up   = "3"
-  asg_desired_capacity_down = "0"
-  asg_desired_capacity      = "3"
-  load_balancers            = ""
+  # Starting capacity
+  asg_min_size         = "3"
+  asg_max_size         = "5"
+  asg_desired_capacity = "3"
+
+  # Day schedule
+  asg_min_size_up         = "3"
+  asg_max_size_up         = "5"
+  asg_desired_capacity_up = "3"
+
+  # Night Schedule
+  asg_min_size_down         = "1"
+  asg_max_size_down         = "1"
+  asg_desired_capacity_down = "1"
+
+  load_balancers = ""
 
   user_data_script = "#!/bin/bash\necho ECS_CLUSTER=${aws_ecs_cluster.ecs.name} >> /etc/ecs/ecs.config"
   zones            = ["${data.aws_availability_zones.available.names}"]

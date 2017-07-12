@@ -76,4 +76,4 @@ variable "internal_load_balancer" {
 }
 
 variable "vpc_network" {}
-variable "availability_zone" {}
+variable "region" {}
