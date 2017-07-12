@@ -19,42 +19,15 @@ variable "allowed_ips" {
   type = "list"
 }
 
-variable "asg_desired_capacity" {
-  default = "3"
-}
-
-variable "asg_max_size" {
-  default = "5"
-}
-
-variable "asg_min_size" {
-  default = "3"
-}
-
-variable "asg_desired_capacity_up" {
-  default = "3"
-}
-
-variable "asg_min_size_up" {
-  default = "3"
-}
-
-variable "asg_max_size_up" {
-  default = "5"
-}
-
-variable "asg_min_size_down" {
-  default = "0"
-}
-
-variable "asg_max_size_down" {
-  default = "0"
-}
-
-variable "asg_desired_capacity_down" {
-  default = "0"
-}
-
+variable "asg_desired_capacity" {}
+variable "asg_max_size" {}
+variable "asg_min_size" {}
+variable "asg_desired_capacity_up" {}
+variable "asg_min_size_up" {}
+variable "asg_max_size_up" {}
+variable "asg_min_size_down" {}
+variable "asg_max_size_down" {}
+variable "asg_desired_capacity_down" {}
 variable "listener_port" {}
 variable "listener_protocol" {}
 variable "health_check_port" {}

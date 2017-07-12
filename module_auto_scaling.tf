@@ -10,19 +10,22 @@ module "ecs-autoscaling-group" {
   map_public_ip    = false
 
   # Starting capacity
-  asg_min_size         = "3"
-  asg_max_size         = "5"
-  asg_desired_capacity = "3"
+  asg_desired_capacity = "${var.asg_desired_capacity}"
+  asg_max_size         = "${var.asg_max_size}"
+  asg_min_size         = "${var.asg_min_size}"
 
   # Day schedule
-  asg_min_size_up         = "3"
-  asg_max_size_up         = "5"
-  asg_desired_capacity_up = "3"
+  asg_desired_capacity_up = "${var.asg_desired_capacity_up}"
+  asg_min_size_up         = "${var.asg_min_size_up}"
+  asg_max_size_up         = "${var.asg_max_size_up}"
 
   # Night Schedule
-  asg_min_size_down         = "1"
-  asg_max_size_down         = "1"
-  asg_desired_capacity_down = "1"
+  asg_min_size_down         = "${var.asg_min_size_down}"
+  asg_max_size_down         = "${var.asg_max_size_down}"
+  asg_desired_capacity_down = "${var.asg_desired_capacity_down}"
+
+  schedule_recurrence_up   = "* 6 * * 1-5"
+  schedule_recurrence_down = "* 20 * * 1-5"
 
   load_balancers = ""
 
