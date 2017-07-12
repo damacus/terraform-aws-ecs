@@ -18,10 +18,14 @@ resource "aws_alb" "ecs" {
 }
 
 resource "aws_alb_target_group" "ecs" {
-  name     = "${var.project}-${terraform.env}-alb-tg"
+  name_prefix = "tg-"
   port     = "${var.target_port}"
   protocol = "${var.target_protocol}"
   vpc_id   = "${module.vpc.vpc_id}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 
   health_check {
     healthy_threshold   = 5
@@ -31,12 +35,19 @@ resource "aws_alb_target_group" "ecs" {
     port                = "${var.health_check_port}"
     interval            = 30
   }
+
+  tags {
+    Name        = "${terraform.env}-${var.application}-${var.name}-tg"
+    Environment = "${terraform.env}"
+    Application = "${var.application}"
+  }
 }
 
 resource "aws_alb_listener" "ecs" {
   load_balancer_arn = "${aws_alb.ecs.arn}"
   port              = "${var.listener_port}"
   protocol          = "${var.listener_protocol}"
+
 
   # ssl_policy        = "ELBSecurityPolicy-2015-05"
   # certificate_arn   = "arn:aws:iam::187416307283:server-certificate/test_cert_rab3wuqwgja25ct3n4jdj2tzu4"
