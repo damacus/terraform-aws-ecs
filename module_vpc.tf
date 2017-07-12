@@ -1,5 +1,5 @@
 module "vpc" {
-  source            = "git@github.com:damacus/terraform-module-vpc.git?ref=v1.1.1"
+  source            = "git@github.com:damacus/terraform-module-vpc.git?ref=v1.1.2"
   cost_code         = "${var.cost_code}"
   owner             = "${var.owner}"
   email             = "${var.email}"
