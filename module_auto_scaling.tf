@@ -24,8 +24,8 @@ module "ecs-autoscaling-group" {
   asg_max_size_down         = "${var.asg_max_size_down}"
   asg_desired_capacity_down = "${var.asg_desired_capacity_down}"
 
-  schedule_recurrence_up   = "* 6 * * 1-5"
-  schedule_recurrence_down = "* 20 * * 1-5"
+  schedule_recurrence_up   = "${var.schedule_recurrence_up}"
+  schedule_recurrence_down = "${var.schedule_recurrence_down}"
 
   load_balancers = ""
 

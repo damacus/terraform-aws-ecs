@@ -19,9 +19,9 @@ resource "aws_alb" "ecs" {
 
 resource "aws_alb_target_group" "ecs" {
   name_prefix = "tg-"
-  port     = "${var.target_port}"
-  protocol = "${var.target_protocol}"
-  vpc_id   = "${module.vpc.vpc_id}"
+  port        = "${var.target_port}"
+  protocol    = "${var.target_protocol}"
+  vpc_id      = "${module.vpc.vpc_id}"
 
   lifecycle {
     create_before_destroy = true
@@ -47,7 +47,6 @@ resource "aws_alb_listener" "ecs" {
   load_balancer_arn = "${aws_alb.ecs.arn}"
   port              = "${var.listener_port}"
   protocol          = "${var.listener_protocol}"
-
 
   # ssl_policy        = "ELBSecurityPolicy-2015-05"
   # certificate_arn   = "arn:aws:iam::187416307283:server-certificate/test_cert_rab3wuqwgja25ct3n4jdj2tzu4"

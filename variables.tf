@@ -15,7 +15,19 @@ variable "service-name" {}
 variable "key_name" {}
 variable "task_definition_arn" {}
 
-variable "allowed_ips" {
+variable "allowed_ips_80" {
+  type = "list"
+}
+
+variable "allowed_ips_443" {
+  type = "list"
+}
+
+variable "allowed_sg_80" {
+  type = "list"
+}
+
+variable "allowed_sg_443" {
   type = "list"
 }
 
@@ -31,6 +43,14 @@ variable "asg_desired_capacity_down" {}
 variable "listener_port" {}
 variable "listener_protocol" {}
 variable "health_check_port" {}
+
+variable "schedule_recurrence_up" {
+  default = "* 6 * * 1-5"
+}
+
+variable "schedule_recurrence_down" {
+  defualt = "* 20 * * 1-5 "
+}
 
 variable "health_check_target" {
   default = "/"
