@@ -49,7 +49,7 @@ variable "schedule_recurrence_up" {
 }
 
 variable "schedule_recurrence_down" {
-  defualt = "* 20 * * 1-5 "
+  default = "* 20 * * 1-5 "
 }
 
 variable "health_check_target" {
