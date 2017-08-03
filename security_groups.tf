@@ -75,7 +75,7 @@ resource "aws_security_group_rule" "allowed_sg_80" {
   protocol                 = "TCP"
   from_port                = 80
   to_port                  = 80
-  source_security_group_id = ["${var.allowed_sg_80}"]
+  source_security_group_id = "${var.allowed_sg_80}"
   security_group_id        = "${aws_security_group.load_balancer.id}"
 }
 
@@ -84,7 +84,7 @@ resource "aws_security_group_rule" "allowed_sg_443" {
   protocol                 = "TCP"
   from_port                = 443
   to_port                  = 443
-  source_security_group_id = ["${var.allowed_sg_443}"]
+  source_security_group_id = "${var.allowed_sg_443}"
   security_group_id        = "${aws_security_group.load_balancer.id}"
 }
 

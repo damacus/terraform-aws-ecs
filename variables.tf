@@ -23,14 +23,8 @@ variable "allowed_ips_443" {
   type = "list"
 }
 
-variable "allowed_sg_80" {
-  type = "list"
-}
-
-variable "allowed_sg_443" {
-  type = "list"
-}
-
+variable "allowed_sg_80" {}
+variable "allowed_sg_443" {}
 variable "asg_desired_capacity" {}
 variable "asg_max_size" {}
 variable "asg_min_size" {}
@@ -42,7 +36,9 @@ variable "asg_max_size_down" {}
 variable "asg_desired_capacity_down" {}
 variable "listener_port" {}
 variable "listener_protocol" {}
-variable "health_check_port" {}
+variable "health_check_port" {
+  description = "Use traffic-port if you are using an ALB"
+}
 
 variable "schedule_recurrence_up" {
   default = "* 6 * * 1-5"

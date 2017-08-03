@@ -1,5 +1,6 @@
 module "ecs-autoscaling-group" {
   source           = "git@github.com:damacus/terraform-module-asg.git?ref=v1.0.0"
+  # source = "../terraform-module-asg"
   name             = "ecs-asg"
   vpc_id           = "${module.vpc.vpc_id}"
   subnets          = "${module.vpc.private_subnets}"
@@ -37,5 +38,5 @@ module "ecs-autoscaling-group" {
   application = "${var.service-name}"
   description = "ecs-cluster for ${var.service-name}"
   owner       = "${var.owner}"
-  environment = "${terraform.env}"
+  email       = "${var.email}"
 }
