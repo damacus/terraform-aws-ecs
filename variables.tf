@@ -23,8 +23,14 @@ variable "allowed_ips_443" {
   type = "list"
 }
 
-variable "allowed_sg_80" {}
-variable "allowed_sg_443" {}
+variable "allowed_sg_80" {
+  type = "string"
+}
+
+variable "allowed_sg_443" {
+  type = "string"
+}
+
 variable "asg_desired_capacity" {}
 variable "asg_max_size" {}
 variable "asg_min_size" {}

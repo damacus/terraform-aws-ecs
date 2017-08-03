@@ -49,19 +49,19 @@ data "aws_iam_policy_document" "instance-assume-role-policy" {
 
 # Policy for the role which allows it to use STS to get credentials to access EC2.
 resource "aws_iam_role" "ecs" {
-  name               = "ecs_role"
+  name               = "ecs_role_${var.project}_${terraform.env}"
   assume_role_policy = "${data.aws_iam_policy_document.instance-assume-role-policy.json}"
 }
 
 # Rules to apply to the role
 resource "aws_iam_role_policy" "ecs" {
-  name   = "ecs_role_policy"
+  name   = "ecs_role_policy_${var.project}_${terraform.env}"
   role   = "${aws_iam_role.ecs.id}"
   policy = "${data.aws_iam_policy_document.ecs.json}"
 }
 
 # Roles to apply to an instance
 resource "aws_iam_instance_profile" "ecs" {
-  name = "ecs_profile"
+  name = "ecs_profile_${var.project}_${terraform.env}"
   role = "${aws_iam_role.ecs.name}"
 }
