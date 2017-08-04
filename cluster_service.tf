@@ -1,9 +1,9 @@
 resource "aws_ecs_cluster" "ecs" {
-  name = "${var.service-name}"
+  name = "${var.service-name}-${terraform.env}"
 }
 
 resource "aws_ecs_service" "ecs" {
-  name            = "${var.service-name}"
+  name            = "${var.service-name}-${terraform.env}"
   cluster         = "${aws_ecs_cluster.ecs.id}"
   task_definition = "${var.task_definition_arn}"
   desired_count   = "${var.desired_tasks}"

@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "lb_logs" {
-  bucket = "load-balancer-logs-${terraform.env}-${var.name}"
+  bucket = "load-balancer-logs-${var.name}-${terraform.env}"
   acl    = "log-delivery-write"
 
   versioning {
