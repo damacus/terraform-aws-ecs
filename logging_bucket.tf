@@ -38,7 +38,7 @@ resource "aws_s3_bucket" "lb_logs" {
         "s3:PutObject"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::load-balancer-logs-${terraform.env}-${var.name}/AWSLogs/*",
+      "Resource": "arn:aws:s3:::load-balancer-logs-${var.name}-${terraform.env}/AWSLogs/*",
       "Principal": {
         "AWS": [
           "${data.aws_elb_service_account.main.arn}"
