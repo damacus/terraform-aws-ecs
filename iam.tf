@@ -49,8 +49,9 @@ data "aws_iam_policy_document" "instance-assume-role-policy" {
 
 # Policy for the role which allows it to use STS to get credentials to access EC2.
 resource "aws_iam_role" "ecs" {
-  name               = "ecs_role_${var.project}_${terraform.env}"
-  assume_role_policy = "${data.aws_iam_policy_document.instance-assume-role-policy.json}"
+  name                  = "ecs_role_${var.project}_${terraform.env}"
+  assume_role_policy    = "${data.aws_iam_policy_document.instance-assume-role-policy.json}"
+  force_detach_policies = "${var.force_detach_policies}"
 }
 
 # Rules to apply to the role

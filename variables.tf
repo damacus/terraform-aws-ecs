@@ -72,3 +72,6 @@ variable "internal_load_balancer" {
 
 variable "vpc_network" {}
 variable "region" {}
+variable "force_detach_policies" {
+  default = "false"
+}
