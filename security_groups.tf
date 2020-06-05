@@ -5,11 +5,10 @@ resource "aws_security_group" "ecs_cluster" {
   description = "ECS Security group"
   vpc_id      = module.vpc.vpc_id
 
-  tags = {
-    Name        = "${terraform.workspace}-${var.application}-${var.name}"
-    Environment = terraform.workspace
-    Application = var.application
-  }
+  tags = merge(
+    var.tags,
+    { Name = "${terraform.workspace}-${var.application}-${var.name}" }
+  )
 }
 
 resource "aws_security_group_rule" "instance_out" {
@@ -45,11 +44,10 @@ resource "aws_security_group" "load_balancer" {
   description = "Load Balancer Security group"
   vpc_id      = module.vpc.vpc_id
 
-  tags = {
-    Name        = "${terraform.workspace}-${var.application}-${var.name}"
-    Environment = terraform.workspace
-    Application = var.application
-  }
+  tags = merge(
+    var.tags,
+    { Name = "${terraform.workspace}-${var.application}-${var.name}" }
+  )
 }
 
 resource "aws_security_group_rule" "in_80" {

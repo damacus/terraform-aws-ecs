@@ -9,11 +9,10 @@ resource "aws_alb" "ecs" {
     bucket = aws_s3_bucket.lb_logs.id
   }
 
-  tags = {
-    Name        = "${terraform.workspace}-${var.application}-${var.name}-alb"
-    Environment = terraform.workspace
-    Application = var.application
-  }
+  tags = merge(
+    var.tags,
+    { Name = "${terraform.workspace}-${var.application}-${var.name}-alb" }
+  )
 }
 
 resource "aws_alb_target_group" "ecs" {
@@ -35,11 +34,10 @@ resource "aws_alb_target_group" "ecs" {
     interval            = 30
   }
 
-  tags = {
-    Name        = "${terraform.workspace}-${var.application}-${var.name}-tg"
-    Environment = terraform.workspace
-    Application = var.application
-  }
+  tags = merge(
+    var.tags,
+    { "Name" = "${terraform.workspace}-${var.application}-${var.name}-tg" }
+  )
 }
 
 resource "aws_alb_listener" "ecs" {

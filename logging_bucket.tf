@@ -49,12 +49,9 @@ resource "aws_s3_bucket" "lb_logs" {
 }
 POLICY
 
-
-  tags = {
-    Name        = "${terraform.workspace}-${var.application}-${var.name}"
-    Environment = terraform.workspace
-    Application = var.application
-    cost_code   = var.cost_code
-  }
+  tags = merge(
+    var.tags,
+    { Name = "${terraform.workspace}-${var.application}-${var.name}" }
+  )
 }
 

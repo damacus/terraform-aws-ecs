@@ -1,5 +1,5 @@
 module "ecs-autoscaling-group" {
-  source           = "git@github.com:damacus/terraform-module-asg.git?ref=v1.0.0"
+  source           = "damacus/ecs/aws"
   name             = "ecs-asg-${terraform.workspace}"
   vpc_id           = module.vpc.vpc_id
   subnets          = module.vpc.private_subnets
@@ -33,9 +33,11 @@ module "ecs-autoscaling-group" {
   zones            = [data.aws_availability_zones.available.names]
 
   # Tags
-  cost_code   = var.cost_code
-  application = "${var.service-name}_${terraform.workspace}"
-  description = "ecs-cluster for ${var.service-name}"
-  owner       = var.owner
-  email       = var.email
+  tags = var.tags
+}
+
+module "vpc" {
+  source  = "damacus/vpc/aws"
+  version = "3.0.4"
+  tags    = var.tags
 }
