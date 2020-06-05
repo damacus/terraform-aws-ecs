@@ -1,12 +1,12 @@
 resource "aws_s3_bucket" "lb_logs" {
-  bucket = "load-balancer-logs-${var.name}-${terraform.env}"
+  bucket = "load-balancer-logs-${var.name}-${terraform.workspace}"
   acl    = "log-delivery-write"
 
   versioning {
     enabled = false
   }
 
-  force_destroy = "${terraform.env == "production" ? false : true }"
+  force_destroy = terraform.workspace == "production" ? false : true
 
   lifecycle_rule {
     id      = "log"
@@ -38,7 +38,7 @@ resource "aws_s3_bucket" "lb_logs" {
         "s3:PutObject"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::load-balancer-logs-${var.name}-${terraform.env}/AWSLogs/*",
+      "Resource": "arn:aws:s3:::load-balancer-logs-${var.name}-${terraform.workspace}/AWSLogs/*",
       "Principal": {
         "AWS": [
           "${data.aws_elb_service_account.main.arn}"
@@ -49,10 +49,12 @@ resource "aws_s3_bucket" "lb_logs" {
 }
 POLICY
 
-  tags {
-    Name        = "${terraform.env}-${var.application}-${var.name}"
-    Environment = "${terraform.env}"
-    Application = "${var.application}"
-    cost_code   = "${var.cost_code}"
+
+  tags = {
+    Name        = "${terraform.workspace}-${var.application}-${var.name}"
+    Environment = terraform.workspace
+    Application = var.application
+    cost_code   = var.cost_code
   }
 }
+

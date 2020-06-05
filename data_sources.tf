@@ -1,5 +1,6 @@
 data "aws_ami" "ecs-optimized" {
   most_recent = true
+  owners      = ["amazon"]
 
   filter {
     name   = "name"
@@ -12,4 +13,5 @@ data "aws_availability_zones" "available" {
 }
 
 data "aws_elb_service_account" "main" {}
+
 data "aws_caller_identity" "current" {}
